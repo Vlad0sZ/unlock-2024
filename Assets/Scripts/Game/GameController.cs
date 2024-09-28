@@ -16,13 +16,20 @@ public class GameController : MonoBehaviour
     [SerializeField] private Transform spawnPointWall;
     [SerializeField] private Transform endPointWall;
     [SerializeField] private float timeWall;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip menuAudioClip;
+    [SerializeField] private AudioClip mainAudioClip;
+    [SerializeField] private AudioClip failAudioClip;
+    [SerializeField] private AudioClip successAudioClip;
+    [SerializeField] private AudioClip hoverAudioClip;
+    [SerializeField] private AudioClip clickAudioClip;
     
     private MeshGenerator _meshGenerator;
     private bool _wallLogicFail;
     
     private void Awake()
     {
-        _meshGenerator = new MeshGenerator(2, 2, 0.5f);
+        _meshGenerator = new MeshGenerator(2, 2, 0.2f);
         human.Trigger += HumanOnTrigger;
         myWebReader.DataTrigger += DataTrigger;
     }
@@ -46,11 +53,12 @@ public class GameController : MonoBehaviour
     private void Fail()
     {
         _wallLogicFail = true;
+        audioSource.PlayOneShot(failAudioClip, 1f);
     }
     
     private void Success()
     {
-        
+        audioSource.PlayOneShot(successAudioClip, 1f);
     }
     
     private void EndWall()
@@ -81,7 +89,7 @@ public class GameController : MonoBehaviour
         var mesh = _meshGenerator.GenerateCutoutMesh(data, width, height);
         meshFilter.mesh = mesh;
         meshCollider.sharedMesh = mesh;
-        obj.transform.DOMove(endPointWall.position, timeWall).OnComplete(() =>
+        obj.transform.DOMove(endPointWall.position, timeWall).SetEase(Ease.InSine).OnComplete(() =>
         {
             EndWall();
             Destroy(obj);
