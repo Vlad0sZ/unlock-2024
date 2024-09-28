@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         myWebReader.NeedData();
+        Generate();
     }
     
     private void DataTrigger(WallDataModel data)
@@ -68,6 +69,7 @@ public class GameController : MonoBehaviour
             Success();
         }
         myWebReader.NeedData();
+        Generate();
     }
     
     [Button]
