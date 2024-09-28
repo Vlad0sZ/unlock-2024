@@ -1,4 +1,6 @@
-﻿public class WallDataModel
+﻿using UnityEngine;
+
+public class WallDataModel
 {
     /// <summary>
     /// Имя пользователя
@@ -18,5 +20,5 @@
     /// <summary>
     /// Картинка 128*128
     /// </summary>
-    public byte[] Data;
+    public Texture2D Data;
 }

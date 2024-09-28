@@ -90,7 +90,7 @@ public class GameController : MonoBehaviour
     private void DataTrigger(WallDataModel data)
     {
         // TODO 
-        Spawn(data.Data.ToArray(), 128, 128);
+        Spawn(data.Data);
     }
     
     private void HumanOnTrigger(GameObject obj)
@@ -127,19 +127,17 @@ public class GameController : MonoBehaviour
     private void Generate()
     {
         var tex = textures[Random.Range(0, textures.Count)];
-        var pixels = tex.GetPixels();
-        var data = pixels.Select(x => x.a < 0.5 ? (byte)1 : (byte)0).ToArray();
-        Spawn(data, tex.width, tex.height);
+        Spawn(tex);
     }
     
     [Button]
-    private void Spawn(byte[] data, int width, int height)
+    private void Spawn(Texture2D texture2D)
     {
         var obj = Instantiate(prefabWall);
         obj.transform.position = spawnPointWall.position;
         var meshFilter = obj.GetComponent<MeshFilter>();
         var meshCollider = obj.GetComponent<MeshCollider>();
-        var mesh = _meshGenerator.GenerateCutoutMesh(data, width, height);
+        var mesh = _meshGenerator.GenerateCutoutMesh(texture2D);
         meshFilter.mesh = mesh;
         meshCollider.sharedMesh = mesh;
         _currentWall = obj;

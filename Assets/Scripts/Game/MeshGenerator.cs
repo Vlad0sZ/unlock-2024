@@ -14,12 +14,12 @@ public class MeshGenerator
         _depth = depth;
     }
 
-    public Mesh GenerateCutoutMesh(byte[] data, int width, int height)
+    public Mesh GenerateCutoutMesh(Texture2D texture)
     {
         // Получаем данные пикселей текстуры
-        var pixels = data;
-        int texWidth = width;
-        int texHeight = height;
+        var pixels = texture.GetPixels();
+        int texWidth = texture.width;
+        int texHeight = texture.height;
 
         // Вершины и треугольники для создания меша
         var vertices = new System.Collections.Generic.List<Vector3>();
@@ -37,7 +37,7 @@ public class MeshGenerator
             for (int x = 0; x < texWidth; x++)
             {
                 // Определяем, является ли пиксель белым (вырез)
-                if (pixels[y * texWidth + x] != 0)
+                if (pixels[y * texWidth + x].a < 0.5f)
                 {
                     float posX = x * stepX - _width / 2;
                     float posY = y * stepY;
@@ -73,7 +73,7 @@ public class MeshGenerator
                     triangles.Add(vertexIndex + 6);
 
 
-                    if (x - 1 >= 0 && pixels[y * texWidth + x - 1] == 0)
+                    if (x - 1 >= 0 && pixels[y * texWidth + x - 1].a > 0.5f)
                     {
                         // Боковые грани (левая сторона)
                         triangles.Add(vertexIndex);
@@ -84,7 +84,7 @@ public class MeshGenerator
                         triangles.Add(vertexIndex + 7);
                     }
 
-                    if (x + 1 < texWidth && pixels[y * texWidth + x + 1] == 0)
+                    if (x + 1 < texWidth && pixels[y * texWidth + x + 1].a > 0.5f)
                     {
                         // Боковые грани (правая сторона)
                         triangles.Add(vertexIndex + 1);
@@ -94,7 +94,7 @@ public class MeshGenerator
                         triangles.Add(vertexIndex + 5);
                         triangles.Add(vertexIndex + 6);
                     }
-                    if (y + 1 < texHeight && pixels[(y + 1) * texWidth + x] == 0)
+                    if (y + 1 < texHeight && pixels[(y + 1) * texWidth + x].a > 0.5f)
                     {
                         // Боковые грани (верхняя сторона)
                         triangles.Add(vertexIndex + 3);
@@ -104,7 +104,7 @@ public class MeshGenerator
                         triangles.Add(vertexIndex + 2);
                         triangles.Add(vertexIndex + 6);
                     }
-                    if (y - 1 >= 0 && pixels[(y - 1) * texWidth + x] == 0)
+                    if (y - 1 >= 0 && pixels[(y - 1) * texWidth + x].a > 0.5f)
                     {
                         // Боковые грани (нижняя сторона)
                         triangles.Add(vertexIndex);

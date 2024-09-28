@@ -1,6 +1,7 @@
 ﻿using System;
 using Backend.Registration;
 using Newtonsoft.Json;
+using UnityEngine;
 
 namespace Backend.Events
 {
@@ -29,12 +30,25 @@ namespace Backend.Events
 
             [JsonProperty("image")] public string encryptedImage;
 
-            public byte[] GetImage()
+            public Texture2D GetImage()
             {
                 if (string.IsNullOrEmpty(encryptedImage))
-                    return Array.Empty<byte>();
+                    return new Texture2D(128, 128);
 
-                return Convert.FromBase64String(encryptedImage);
+                string base64Data = encryptedImage.Substring(encryptedImage.IndexOf(",") + 1);
+                byte[] imageData = Convert.FromBase64String(base64Data);
+                Texture2D texture = new Texture2D(128, 128);
+                if (texture.LoadImage(imageData))
+                {
+                    // Успешно загрузили текстуру
+                    return texture;
+                }
+                else
+                {
+                    // Если загрузка не удалась
+                    Debug.LogError("Не удалось загрузить текстуру из base64 строки.");
+                    return new Texture2D(128, 128);
+                }
             }
         }
     }
