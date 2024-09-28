@@ -1,4 +1,6 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace Backend.Invoker
@@ -23,8 +25,21 @@ namespace Backend.Invoker
 
         private async UniTask SendMethod(string method, object data)
         {
-            var sendData = $"{method}:{data}";
-            await _connection.SendAsync("sendtoclients", sendData);
+            var payload = new JsonPayload(method, data);
+            await _connection.SendAsync("SendToClients", payload);
+        }
+
+        [Serializable]
+        public class JsonPayload
+        {
+            public string method;
+            public object data;
+
+            public JsonPayload(string method, object data)
+            {
+                this.method = method;
+                this.data = data;
+            }
         }
     }
 }
