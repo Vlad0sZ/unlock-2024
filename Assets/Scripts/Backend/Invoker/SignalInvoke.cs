@@ -18,7 +18,13 @@ namespace Backend.Invoker
             if (_connection.State != HubConnectionState.Connected)
                 return;
 
-            await _connection.SendAsync("gameState", state);
+            await SendMethod("gameState", state);
+        }
+
+        private async UniTask SendMethod(string method, object data)
+        {
+            var sendData = $"{method}:{data}";
+            await _connection.SendAsync("sendtoclients", sendData);
         }
     }
 }

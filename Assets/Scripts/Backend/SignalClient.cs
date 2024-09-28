@@ -9,11 +9,7 @@ namespace Backend
 {
     public class SignalClient : MonoBehaviour
     {
-#if DEBUG
-        private const string BackendUrl = @"http://localhost:5555/game";
-// #else
-//         private const string BackendUrl = @"https://gorbulka.ru/game";
-#endif
+        public string HubUrl;
 
         private void Awake() => DontDestroyOnLoad(gameObject);
 
@@ -43,7 +39,7 @@ namespace Backend
         {
             //Создаем соединение с нашим написанным тестовым хабом
             var connection = new HubConnectionBuilder()
-                .WithUrl(BackendUrl)
+                .WithUrl(HubUrl)
                 .WithAutomaticReconnect()
                 .Build();
 

@@ -1,3 +1,4 @@
+using System;
 using Backend.Registration;
 using Microsoft.AspNetCore.SignalR.Client;
 using UnityEngine;
@@ -7,6 +8,8 @@ namespace Backend.Events
 {
     public abstract class AbstractEvent<TInput, TOutput> : SubscriberMono, ISignalListener<TOutput>
     {
+        public TOutput Data { get; private set; }
+        
         public UnityEvent<TOutput> onValueChanged;
 
         protected abstract string MethodName { get; }
@@ -17,7 +20,8 @@ namespace Backend.Events
         protected virtual void ValueChanged(TInput arg)
         {
             Debug.Log($"[ON EVENT] {MethodName} value is {arg}");
-            onValueChanged?.Invoke(ConvertToOutput(arg));
+            Data = ConvertToOutput(arg);
+            onValueChanged?.Invoke(Data);
         }
 
         protected abstract TOutput ConvertToOutput(TInput input);
