@@ -24,6 +24,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private AudioClip mainAudioClip;
     [SerializeField] private AudioClip failAudioClip;
     [SerializeField] private AudioClip successAudioClip;
+
+    public int Score { get; set; }
     
     private MeshGenerator _meshGenerator;
     private bool _wallLogicFail;
@@ -106,6 +108,7 @@ public class GameController : MonoBehaviour
     
     private void Success()
     {
+        Score++;
         audioSource.PlayOneShot(successAudioClip, 4f);
     }
     
