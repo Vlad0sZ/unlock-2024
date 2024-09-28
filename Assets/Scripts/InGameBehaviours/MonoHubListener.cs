@@ -11,11 +11,16 @@ namespace InGameBehaviours
         protected virtual void OnEnable()
         {
             Event = SignalRegistration<TEvent>.Resolve();
-            Event.OnValueChanged += OnValueChanged;
+
+            if (Event != null)
+                Event.OnValueChanged += OnValueChanged;
         }
 
-        protected virtual void OnDisable() => 
-            Event.OnValueChanged -= OnValueChanged;
+        protected virtual void OnDisable()
+        {
+            if (Event != null)
+                Event.OnValueChanged -= OnValueChanged;
+        }
 
         protected abstract void OnValueChanged(TData arg0);
     }
