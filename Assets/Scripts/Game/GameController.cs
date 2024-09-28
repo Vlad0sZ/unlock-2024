@@ -45,7 +45,9 @@ public class GameController : MonoBehaviour
     private void FinishGame()
     {
         _isGameFinished = true;
-        myWebReader.GameEnd();
+        myWebReader.GameWasStopped();
+        
+        // TODO перезапуск уровня GameEndBehaviour.ReloadGame
     }
 
     private void Start()
@@ -76,7 +78,7 @@ public class GameController : MonoBehaviour
     {
         audioSource.clip = mainAudioClip;
         audioSource.Play();
-        myWebReader.GameStart();
+        myWebReader.GameWasStarted();
         yield return new WaitForSeconds(5f);
         timer.StartTimer();
         myWebReader.NeedData();

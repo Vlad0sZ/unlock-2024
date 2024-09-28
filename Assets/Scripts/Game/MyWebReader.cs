@@ -16,6 +16,8 @@ namespace Game
         private bool _isNeedData;
         private Coroutine _coroutine;
 
+        public void NeedData() => _isNeedData = true;
+
         protected override void OnValueChanged(UserDataEvent.UserData arg0) =>
             _queueData.Enqueue(arg0);
 
