@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MediaPipeUnity.Backend;
 using UnityEngine;
 
 public class Human : MonoBehaviour
 {
+    [SerializeField] private PoseController poseController;
     [SerializeField] private List<LineRenderer> lines;
     [SerializeField] private LineRenderer headLine;
     [SerializeField] private List<Point> points;
@@ -34,6 +36,24 @@ public class Human : MonoBehaviour
 
     private void Update()
     {
+        var body = poseController.DetectedBody;
+
+        if (body.IsDetected)
+        {
+            ldl.transform.position = body[28].Position; 
+            rdl.transform.position = body[27].Position; 
+            ldk.transform.position = body[26].Position; 
+            rdk.transform.position = body[25].Position; 
+            p.transform.position = (body[24].Position+body[23].Position)/2f; 
+            h.transform.position = body[0].Position; 
+            ls.transform.position = body[12].Position; 
+            rs.transform.position = body[11].Position; 
+            lmu.transform.position = body[14].Position; 
+            rmu.transform.position = body[13].Position; 
+            lhu.transform.position = body[16].Position; 
+            rhu.transform.position = body[15].Position; 
+        }
+        
         lines[0].SetPositions(new []{ ldl.position, ldk.position });
         lines[1].SetPositions(new []{ rdl.position, rdk.position });
         lines[2].SetPositions(new []{ ldk.position, p.position });
