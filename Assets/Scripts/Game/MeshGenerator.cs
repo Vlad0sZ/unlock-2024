@@ -40,7 +40,7 @@ public class MeshGenerator
                 if (pixels[y * texWidth + x] != 0)
                 {
                     float posX = x * stepX - _width / 2;
-                    float posY = y * stepY - _height / 2;
+                    float posY = y * stepY;
 
                     // Передняя грань
                     vertices.Add(new Vector3(posX, posY, _depth / 2)); // Нижняя левая
