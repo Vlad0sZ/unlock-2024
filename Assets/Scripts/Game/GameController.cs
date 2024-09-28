@@ -1,14 +1,15 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Utils;
 using Random = UnityEngine.Random;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private Timer timer;
     [SerializeField] private Human human;
     [SerializeField] private MyWebReader myWebReader;
     [SerializeField] private List<Texture2D> textures;
@@ -21,15 +22,29 @@ public class GameController : MonoBehaviour
     [SerializeField] private AudioClip mainAudioClip;
     [SerializeField] private AudioClip failAudioClip;
     [SerializeField] private AudioClip successAudioClip;
-
+    
     private MeshGenerator _meshGenerator;
     private bool _wallLogicFail;
+    private bool _isGameFinished;
+    private GameObject _currentWall;
     
     private void Awake()
     {
         _meshGenerator = new MeshGenerator(2, 2, 0.04f);
         human.Trigger += HumanOnTrigger;
         myWebReader.DataTrigger += DataTrigger;
+        timer.OnStop += TimerOnOnStop;
+    }
+    
+    private void TimerOnOnStop()
+    {
+        FinishGame();
+    }
+    
+    private void FinishGame()
+    {
+        _isGameFinished = true;
+        myWebReader.GameEnd();
     }
 
     private void Start()
@@ -37,7 +52,20 @@ public class GameController : MonoBehaviour
         audioSource.clip = menuAudioClip;
         audioSource.Play();
     }
-
+    
+    private void Update()
+    {
+        if (_currentWall != null)
+        {
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                Destroy(_currentWall);
+                _currentWall = null;
+                myWebReader.NeedData();
+            }
+        }
+    }
+    
     public void StartGame()
     {
         StartCoroutine(StartGameStart());
@@ -47,9 +75,11 @@ public class GameController : MonoBehaviour
     {
         audioSource.clip = mainAudioClip;
         audioSource.Play();
+        myWebReader.GameStart();
         yield return new WaitForSeconds(5f);
+        timer.StartTimer();
         myWebReader.NeedData();
-        Generate();
+        //Generate();
     }
     
     private void DataTrigger(WallDataModel data)
@@ -81,8 +111,10 @@ public class GameController : MonoBehaviour
         }
 
         _wallLogicFail = false;
-        myWebReader.NeedData();
-        Generate();
+        if(!_isGameFinished)
+        {
+            myWebReader.NeedData();
+        }
     }
     
     [Button]
@@ -104,6 +136,7 @@ public class GameController : MonoBehaviour
         var mesh = _meshGenerator.GenerateCutoutMesh(data, width, height);
         meshFilter.mesh = mesh;
         meshCollider.sharedMesh = mesh;
+        _currentWall = obj;
         obj.transform.DOMove(endPointWall.position, timeWall).SetEase(Ease.InSine).OnComplete(() =>
         {
             EndWall();

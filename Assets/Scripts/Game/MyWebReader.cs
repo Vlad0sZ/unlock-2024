@@ -17,6 +17,16 @@ public class MyWebReader: MonoBehaviour
         StartCoroutine(SendGetRequest());
     }
 
+    public void GameStart()
+    {
+        
+    }
+    
+    public void GameEnd()
+    {
+        
+    }
+
     IEnumerator SendGetRequest()
     {
         while (true)
