@@ -17,7 +17,7 @@ public class SunMover : MonoBehaviour
     // Начальная позиция спрайта на сплайне
     public float progress { get; protected set; }
 
-    public bool IsDone = true;
+    private bool IsDone = true;
 
     public void StartMove()
     {
