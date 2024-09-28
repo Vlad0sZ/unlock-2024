@@ -33,9 +33,22 @@ public class GameController : MonoBehaviour
         human.Trigger += HumanOnTrigger;
         myWebReader.DataTrigger += DataTrigger;
     }
-    
-    private IEnumerator Start()
+
+    private void Start()
     {
+        audioSource.clip = menuAudioClip;
+        audioSource.Play();
+    }
+
+    public void StartGame()
+    {
+        StartCoroutine(StartGameStart());
+    }
+    
+    private IEnumerator StartGameStart()
+    {
+        audioSource.clip = mainAudioClip;
+        audioSource.Play();
         yield return new WaitForSeconds(5f);
         myWebReader.NeedData();
         Generate();
