@@ -19,7 +19,7 @@ namespace Game
         protected override void OnValueChanged(UserDataEvent.UserData arg0) =>
             _queueData.Enqueue(arg0);
 
-
+        public void Update()
         {
             if (_isNeedData == false)
                 return;
