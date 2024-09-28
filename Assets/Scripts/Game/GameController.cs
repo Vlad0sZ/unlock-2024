@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private Timer timer;
     [SerializeField] private Human human;
     [SerializeField] private MyWebReader myWebReader;
+    [SerializeField] private GameEndBehavior gameEndBehavior;
     [SerializeField] private List<Texture2D> textures;
     [SerializeField] private GameObject prefabWall;
     [SerializeField] private Transform spawnPointWall;
@@ -68,6 +69,9 @@ public class GameController : MonoBehaviour
                 myWebReader.NeedData();
             }
         }
+        
+        if (Input.GetKeyUp(KeyCode.R))
+            gameEndBehavior.ReloadGame();
     }
     
     public void StartGame()
