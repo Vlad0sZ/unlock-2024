@@ -68,6 +68,8 @@ public class GameController : MonoBehaviour
         {
             Success();
         }
+
+        _wallLogicFail = false;
         myWebReader.NeedData();
         Generate();
     }
