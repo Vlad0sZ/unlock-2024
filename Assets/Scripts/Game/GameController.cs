@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
     
     private void Awake()
     {
-        _meshGenerator = new MeshGenerator(2, 2, 0.2f);
+        _meshGenerator = new MeshGenerator(2, 2, 0.04f);
         human.Trigger += HumanOnTrigger;
         myWebReader.DataTrigger += DataTrigger;
     }
