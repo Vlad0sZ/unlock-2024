@@ -14,7 +14,7 @@ public class MeshGenerator
         _depth = depth;
     }
 
-    public Mesh GenerateCutoutMesh(int[] data, int width, int height)
+    public Mesh GenerateCutoutMesh(byte[] data, int width, int height)
     {
         // Получаем данные пикселей текстуры
         var pixels = data;
