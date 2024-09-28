@@ -1,5 +1,6 @@
 ﻿using System;
 using Backend.Events;
+using UnityEngine;
 
 namespace InGameBehaviours
 {
@@ -13,12 +14,9 @@ namespace InGameBehaviours
             // Имя пользователя
             string userName = userData.UserName;
 
-            // Задание пользователя
-            string dataTask = userData.DrawTask;
-
-            // Картинка пользователя 128 * 128 размером. 1 - черное, 0 - белое
-            byte[] imageBytes = GetImage(userData.UserDrawBase64);
+            
         }
+        
 
 
         private byte[] GetImage(string base64String) =>

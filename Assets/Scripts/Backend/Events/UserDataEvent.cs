@@ -1,23 +1,41 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Backend.Registration;
+using Newtonsoft.Json;
 
 namespace Backend.Events
 {
-    public class UserDataEvent : AbstractEvent<string, UserDataEvent.UserData>
+    public class UserDataEvent : JsonEvent<UserDataEvent.UserData>
     {
-        protected override string MethodName => "data";
+        protected override string MethodName => "image";
 
-        protected override UserData ConvertToOutput(string input) =>
-            JsonConvert.DeserializeObject<UserData>(input);
+        private void Start() =>
+            SignalRegistration<UserDataEvent>.Register(this);
+
+        private void OnDestroy() =>
+            SignalRegistration<UserDataEvent>.Unregister();
 
         public struct UserData
         {
-            [JsonProperty("id")] public string UserId;
+            [JsonProperty("userId")] public string UserId;
 
-            [JsonProperty("name")] public string UserName;
-            
-            [JsonProperty("draw_task")] public string DrawTask;
+            [JsonProperty("userName")] public string UserName;
 
-            [JsonProperty("data")] public string UserDrawBase64;
+            [JsonProperty("data")] public ImageData UserCustomData;
+        }
+
+        public struct ImageData
+        {
+            [JsonProperty("task")] public string task;
+
+            [JsonProperty("image")] public string encryptedImage;
+
+            public byte[] GetImage()
+            {
+                if (string.IsNullOrEmpty(encryptedImage))
+                    return Array.Empty<byte>();
+
+                return Convert.FromBase64String(encryptedImage);
+            }
         }
     }
 }

@@ -1,61 +1,49 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using Backend.Events;
+using Backend.Invoker;
+using Backend.Registration;
+using InGameBehaviours;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class MyWebReader: MonoBehaviour
+namespace Game
 {
-    private string _url="";
-    private bool _isNeedData;
-
-    public Action<WallDataModel> DataTrigger;
-
-    public void NeedData()
+    public class MyWebReader : MonoHubListener<UserDataEvent, UserDataEvent.UserData>
     {
-        StartCoroutine(SendGetRequest());
-    }
+        public Action<WallDataModel> DataTrigger;
 
-    public void GameStart()
-    {
-        
-    }
-    
-    public void GameEnd()
-    {
-        
-    }
+        private readonly Queue<UserDataEvent.UserData> _queueData = new(128);
+        private bool _isNeedData;
+        private Coroutine _coroutine;
 
-    IEnumerator SendGetRequest()
-    {
-        while (true)
+        protected override void OnValueChanged(UserDataEvent.UserData arg0) =>
+            _queueData.Enqueue(arg0);
+
+
         {
-            if (_url == "") break;
-            using (var webRequest = UnityWebRequest.Get(_url))
-            {
-                // Отправляем запрос и ожидаем ответ
-                yield return webRequest.SendWebRequest();
+            if (_isNeedData == false)
+                return;
 
-                // Проверяем на ошибки
-                if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
-                    webRequest.result == UnityWebRequest.Result.ProtocolError)
-                {
-                    Debug.LogError($"Ошибка: {webRequest.error}");
-                }
-                else
-                {
-                    // Получаем ответ как текст
-                    string responseText = webRequest.downloadHandler.text;
-                    var data = JsonConvert.DeserializeObject<WallDataModel>(responseText);
-                    if (data != null)
-                    {
-                        Debug.Log($"Ответ сервера: {responseText}");
-                        DataTrigger?.Invoke(data);
-                        break;
-                    }
-                }
-            }
+            if (_queueData.Count == 0)
+                return;
+
+            var peek = _queueData.Dequeue();
+            var wallData = new WallDataModel()
+            {
+                UserId = peek.UserId,
+                UserName = peek.UserName,
+                TaskText = peek.UserCustomData.task,
+                Data = peek.UserCustomData.GetImage()
+            };
+
+            _isNeedData = false;
+            DataTrigger?.Invoke(wallData);
         }
+
+        public void GameWasStarted() =>
+            SignalRegistration<ISignalInvoke>.Resolve()?.SendCommandToChangeState(1);
+
+        public void GameWasStopped() =>
+            SignalRegistration<ISignalInvoke>.Resolve()?.SendCommandToChangeState(2);
     }
 }
