@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private AudioClip mainAudioClip;
     [SerializeField] private AudioClip failAudioClip;
     [SerializeField] private AudioClip successAudioClip;
-
+    [SerializeField] private UITextUserData userText;
     public int Score { get; set; }
     
     private MeshGenerator _meshGenerator;
@@ -97,6 +97,7 @@ public class GameController : MonoBehaviour
     {
         // TODO 
         Spawn(data.Data);
+        userText.SetText(data.UserName, data.TaskText);
     }
     
     private void HumanOnTrigger(GameObject obj)

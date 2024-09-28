@@ -26,7 +26,7 @@ namespace Game
         }
 
         private static string GetColorizedRichText(string text, Color color) =>
-            $"<color=#{color.ToString("F5")}>{text}</color>";
+            $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{text}</color>";
 
         private static T GetRandom<T>(IReadOnlyList<T> array)
         {
