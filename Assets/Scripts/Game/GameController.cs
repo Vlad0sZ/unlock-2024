@@ -21,9 +21,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private AudioClip mainAudioClip;
     [SerializeField] private AudioClip failAudioClip;
     [SerializeField] private AudioClip successAudioClip;
-    [SerializeField] private AudioClip hoverAudioClip;
-    [SerializeField] private AudioClip clickAudioClip;
-    
+
     private MeshGenerator _meshGenerator;
     private bool _wallLogicFail;
     
