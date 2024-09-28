@@ -101,12 +101,12 @@ public class GameController : MonoBehaviour
     private void Fail()
     {
         _wallLogicFail = true;
-        audioSource.PlayOneShot(failAudioClip, 1f);
+        audioSource.PlayOneShot(failAudioClip, 4f);
     }
     
     private void Success()
     {
-        audioSource.PlayOneShot(successAudioClip, 1f);
+        audioSource.PlayOneShot(successAudioClip, 4f);
     }
     
     private void EndWall()
