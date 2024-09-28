@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,9 +15,15 @@ public class SunMover : MonoBehaviour
     private float elapsedTime = 0f;
 
     // Начальная позиция спрайта на сплайне
-    private float progress = 0f;
+    public float progress { get; protected set; }
 
-    private bool IsDone;
+    public bool IsDone = true;
+
+    public void StartMove()
+    {
+        IsDone = false;
+        elapsedTime = 0;
+    }
 
     // Update вызывается каждый кадр
     void Update()
