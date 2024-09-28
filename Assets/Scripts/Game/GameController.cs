@@ -77,7 +77,10 @@ public class GameController : MonoBehaviour
         var obj = Instantiate(prefabWall);
         obj.transform.position = spawnPointWall.position;
         var meshFilter = obj.GetComponent<MeshFilter>();
-        meshFilter.mesh = _meshGenerator.GenerateCutoutMesh(data, width, height);
+        var meshCollider = obj.GetComponent<MeshCollider>();
+        var mesh = _meshGenerator.GenerateCutoutMesh(data, width, height);
+        meshFilter.mesh = mesh;
+        meshCollider.sharedMesh = mesh;
         obj.transform.DOMove(endPointWall.position, timeWall).OnComplete(() =>
         {
             EndWall();
