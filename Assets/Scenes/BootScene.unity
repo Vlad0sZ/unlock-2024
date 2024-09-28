@@ -767,7 +767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e64ac1ed193c4d2caa273a21ec2ec85a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HubUrl: http://localhost:5266/online/hub
+  HubUrl: https://gorbulka.ru/online/hub
   subscribers:
   - {fileID: 1157147625}
   - {fileID: 1157147624}

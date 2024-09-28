@@ -1,8 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
-
-public class WallDataModel
+﻿public class WallDataModel
 {
-    [JsonPropertyName("data")]
-    public List<int> Data;
+    /// <summary>
+    /// Имя пользователя
+    /// </summary>
+    public string UserName;
+
+    /// <summary>
+    /// ID пользователя
+    /// </summary>
+    public string UserId;
+
+    /// <summary>
+    /// Текст задания
+    /// </summary>
+    public string TaskText;
+
+    /// <summary>
+    /// Картинка 128*128
+    /// </summary>
+    public byte[] Data;
 }

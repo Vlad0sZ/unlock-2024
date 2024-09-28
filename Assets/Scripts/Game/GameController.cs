@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using Game;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -54,7 +55,8 @@ public class GameController : MonoBehaviour
     
     private void DataTrigger(WallDataModel data)
     {
-        Spawn(data.Data.ToArray(), 128, 128);
+        // TODO 
+        // Spawn(data.Data.ToArray(), 128, 128);
     }
     
     private void HumanOnTrigger(GameObject obj)
