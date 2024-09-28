@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.SignalR.Client;
+using Newtonsoft.Json;
 
 namespace Backend.Invoker
 {
@@ -26,7 +27,7 @@ namespace Backend.Invoker
         private async UniTask SendMethod(string method, object data)
         {
             var payload = new JsonPayload(method, data);
-            await _connection.SendAsync("SendToClients", payload);
+            await _connection.SendAsync("SendToClients", JsonConvert.SerializeObject(payload));
         }
 
         [Serializable]
