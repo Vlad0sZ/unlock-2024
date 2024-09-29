@@ -11,6 +11,10 @@ public class CloudController : MonoBehaviour
     private void Awake()
     {
         meshRenderer.material = new Material(meshRenderer.material);
+    }
+    
+    public void StartMove()
+    {
         StartCoroutine(Move());
     }
 

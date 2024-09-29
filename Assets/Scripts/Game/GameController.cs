@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private SunMover sunMover;
+    [SerializeField] private CloudController cloud;
     [SerializeField] private Timer timer;
     [SerializeField] private Human human;
     [SerializeField] private MyWebReader myWebReader;
@@ -90,6 +91,7 @@ public class GameController : MonoBehaviour
         audioSource.clip = mainAudioClip;
         audioSource.Play();
         myWebReader.GameWasStarted();
+        cloud.StartMove();
         yield return new WaitForSeconds(5f);
         sunMover.StartMove();
         timer.StartTimer();
