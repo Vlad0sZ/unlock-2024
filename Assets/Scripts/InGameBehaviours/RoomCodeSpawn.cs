@@ -16,9 +16,9 @@ namespace InGameBehaviours
                 OnValueChanged(Event.Data);
         }
 
-        protected override void OnValueChanged(RoomCodeEvent.Room code)
+        protected override void OnValueChanged(RoomCodeEvent.Room data)
         {
-            string roomCode = code.Code;
+            string roomCode = data.Code;
             textComponent.text = roomCode;
         }
     }

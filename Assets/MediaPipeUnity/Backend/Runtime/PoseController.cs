@@ -89,7 +89,7 @@ namespace MediaPipeUnity.Backend
 
             var oldPosition = DetectedBody.Joints[index];
 
-            if (Vector3.Distance(newPosition, oldPosition.Position) <= 0.02f)
+            if (Vector3.Distance(newPosition, oldPosition.Position) <= 0.033f)
                 return oldPosition.Position;
 
             return newPosition;

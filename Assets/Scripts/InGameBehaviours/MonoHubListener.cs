@@ -22,6 +22,6 @@ namespace InGameBehaviours
                 Event.OnValueChanged -= OnValueChanged;
         }
 
-        protected abstract void OnValueChanged(TData arg0);
+        protected abstract void OnValueChanged(TData data);
     }
 }

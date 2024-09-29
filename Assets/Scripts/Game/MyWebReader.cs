@@ -12,14 +12,20 @@ namespace Game
     {
         public Action<WallDataModel> DataTrigger;
 
+        private readonly HashSet<string> _userQueue = new HashSet<string>(128);
         private readonly Queue<UserDataEvent.UserData> _queueData = new(128);
         private bool _isNeedData;
         private Coroutine _coroutine;
 
         public void NeedData() => _isNeedData = true;
 
-        protected override void OnValueChanged(UserDataEvent.UserData arg0) =>
-            _queueData.Enqueue(arg0);
+        protected override void OnValueChanged(UserDataEvent.UserData data)
+        {
+            if (!_userQueue.Add(data.UserId))
+                return;
+
+            _queueData.Enqueue(data);
+        }
 
         public void Update()
         {
@@ -30,6 +36,8 @@ namespace Game
                 return;
 
             var peek = _queueData.Dequeue();
+            _userQueue.Remove(peek.UserId);
+
             var wallData = new WallDataModel()
             {
                 UserId = peek.UserId,

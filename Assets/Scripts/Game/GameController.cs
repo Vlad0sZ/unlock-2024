@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using DG.Tweening;
 using Game;
 using Sirenix.OdinInspector;
@@ -25,7 +24,10 @@ public class GameController : MonoBehaviour
     [SerializeField] private AudioClip mainAudioClip;
     [SerializeField] private AudioClip failAudioClip;
     [SerializeField] private AudioClip successAudioClip;
+    [SerializeField] private AudioClip finishGameClip;
     [SerializeField] private UITextUserData userText;
+    [SerializeField] private FinishGameObject finishGameObject;
+    
     public int Score { get; set; }
     
     private MeshGenerator _meshGenerator;
@@ -48,10 +50,12 @@ public class GameController : MonoBehaviour
     
     private void FinishGame()
     {
+        audioSource.Stop();
+        
         _isGameFinished = true;
         myWebReader.GameWasStopped();
-        
-        // TODO перезапуск уровня GameEndBehaviour.ReloadGame
+        finishGameObject.ShowFinishGame(Score);
+        audioSource.PlayOneShot(finishGameClip);
     }
 
     private void Start()
