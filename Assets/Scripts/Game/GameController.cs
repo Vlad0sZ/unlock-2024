@@ -57,6 +57,17 @@ public class GameController : MonoBehaviour
         myWebReader.GameWasStopped();
         finishGameObject.ShowFinishGame(Score);
         audioSource.PlayOneShot(finishGameClip);
+        try
+        {
+            if (_currentWall != null)
+            {
+                Destroy(_currentWall);
+            }
+        }
+        catch
+        {
+            // ignored
+        }
     }
 
     private void Start()
