@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace Backend
 {
+    // TODO https://habr.com/ru/articles/712918/
     public class SignalClient : MonoBehaviour
     {
         public string HubUrl;

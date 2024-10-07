@@ -28,7 +28,7 @@ namespace Mediapipe.Unity.Sample.PoseLandmarkDetection
     Tasks.Core.BaseOptions.Delegate.GPU;
 #endif
 
-    public ModelType Model { get; set; } = ModelType.BlazePoseFull;
+    public ModelType Model { get; set; } = ModelType.BlazePoseLite;
     public Tasks.Vision.Core.RunningMode RunningMode { get; set; } = Tasks.Vision.Core.RunningMode.LIVE_STREAM;
 
     public int NumPoses { get; set; } = 1;
