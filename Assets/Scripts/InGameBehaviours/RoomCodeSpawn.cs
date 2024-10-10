@@ -18,7 +18,7 @@ namespace InGameBehaviours
 
         protected override void OnValueChanged(RoomCodeEvent.Room data)
         {
-            string roomCode = data.Code;
+            string roomCode = data.Code.ToUpper();
             textComponent.text = roomCode;
         }
     }
