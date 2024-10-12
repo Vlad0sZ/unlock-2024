@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameSettings
 {
-    public class WebCamBehaviour : MonoBehaviour
+    public class WebCamSettings : MonoBehaviour
     {
         [SerializeField] private TMP_Dropdown dropdown;
         [SerializeField] private GameObject noDeviceWarning;
