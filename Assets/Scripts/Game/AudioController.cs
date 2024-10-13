@@ -12,12 +12,11 @@ namespace Game
             public AudioClip audioClip;
         }
 
-        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioSource musicSource;
+        [SerializeField] private AudioSource effectsSource;
+        
         [SerializeField] private AudioClip successAudioClip;
         [SerializeField] private AudioClip failAudioClip;
-        
-        [SerializeField] private AudioClip menuAudioClip;
-        [SerializeField] private AudioClip mainAudioClip;
         [SerializeField] private AudioClip finishGameClip;
 
         [SerializeField] private AudioClipWithState[] audioClips;
@@ -37,9 +36,21 @@ namespace Game
 
         private void ChangeAudioClip(AudioClip audioClip)
         {
-            audioSource.Stop();
-            audioSource.clip = audioClip;
-            audioSource.Play();
+            musicSource.Stop();
+            musicSource.clip = audioClip;
+            musicSource.Play();
+        }
+
+        public void PlaySuccess(float volume = 1f) => 
+            effectsSource.PlayOneShot(successAudioClip, volume);
+
+        public void PlayFail(float volume = 1f) => 
+            effectsSource.PlayOneShot(failAudioClip, volume);
+
+        public void PlayFinished()
+        {
+            OnStateChanged(GameState.MainMenu);
+            musicSource.PlayOneShot(finishGameClip);
         }
     }
 }

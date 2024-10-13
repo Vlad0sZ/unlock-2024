@@ -1,4 +1,5 @@
-﻿using InGameBehaviours;
+﻿using Game;
+using InGameBehaviours;
 using UnityEngine;
 using UnityEngine.UI;
 
