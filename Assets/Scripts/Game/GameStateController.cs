@@ -1,13 +1,12 @@
 ﻿using System;
 using Backend.Invoker;
 using Backend.Registration;
-using UnityEngine;
 
 namespace Game
 {
     public static class GameStateController
     {
-        private static GameState _currentState;
+        private static GameState _currentState = GameState.None;
         public static event Action<GameState> OnStateChanged;
 
         public static GameState CurrentState
@@ -21,7 +20,7 @@ namespace Game
             if (_currentState == state)
                 return;
 
-
+            _currentState = state;
             OnStateChanged?.Invoke(state);
             SignalRegistration<ISignalInvoke>.Resolve()?.SendCommandToChangeState((int) state);
         }
@@ -29,9 +28,10 @@ namespace Game
 
     public enum GameState : int
     {
-        None = 0,
+        None = -1,
+        MainMenu = 0,
         Game = 1,
         FinalScreen = 2,
-        MainMenu = 3,
+        Tutorial = 3,
     }
 }

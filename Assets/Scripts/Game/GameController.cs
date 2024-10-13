@@ -74,11 +74,11 @@ namespace Game
 
         private IEnumerator StartGameStart()
         {
-            GameStateController.CurrentState = GameState.Game;
+            sunMover.StartMove();
             cloud.StartMove();
+            GameStateController.CurrentState = GameState.Game;
         
             yield return new WaitForSeconds(1f);
-            sunMover.StartMove();
             timer.StartTimer();
             myWebReader.NeedData();
         }

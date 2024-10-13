@@ -540,6 +540,7 @@ GameObject:
   - component: {fileID: 2616472942584986370}
   - component: {fileID: 4038569938614486201}
   - component: {fileID: 7459441630549598141}
+  - component: {fileID: 4075149155038590032}
   m_Layer: 5
   m_Name: Players Count Text
   m_TagString: Untagged
@@ -664,6 +665,22 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4075149155038590032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5567789239578189328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b9f776f163a4bc3af9b81829c9234a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 7459441630549598141}
+  userText: "\u041F\u043E\u0434\u043A\u043B\u044E\u0447\u0435\u043D\u043E \u0438\u0433\u0440\u043E\u043A\u043E\u0432:
+    {0}"
+  countColor: {r: 0.4862745, g: 0.2784314, b: 0.74509805, a: 1}
 --- !u!1 &7618235431917190342
 GameObject:
   m_ObjectHideFlags: 0

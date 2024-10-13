@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Menu
 {
-    public class FinalScreen : StartScreen
+    public class FinalScreen : ScreenWithButtons
     {
         [SerializeField] private PlayerScoreGrid playerGrid;
         
@@ -15,7 +15,7 @@ namespace Menu
         protected override void OnPlay()
         {
             // TODO without tutorial
-            gameController.StartGame();
+            GameController.StartGame();
             gameObject.SetActive(false);
         }
     }
