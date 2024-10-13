@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Human : MonoBehaviour
 {
-    [SerializeField] private float maxRadiusHead;
     [SerializeField] private PoseController poseController;
     [SerializeField] private List<LineRenderer> lines;
     [SerializeField] private LineRenderer headLine;
@@ -72,10 +71,7 @@ public class Human : MonoBehaviour
         lines[9].SetPositions(new []{ lmu.position, lhu.position });
         lines[10].SetPositions(new []{ rmu.position, rhu.position });
 
-        var sp = h.position - s;
-        sp *= Mathf.Min(sp.magnitude, maxRadiusHead);
-        var headCenter = s + sp;
-        DrawCircle(headCenter, sp.magnitude);
+        DrawCircle(h.position, Vector3.Distance(s, h.position));
         //lines[5].SetPositions(new []{ s, h.position });
     }
     
