@@ -72,13 +72,15 @@ public class Human : MonoBehaviour
         lines[9].SetPositions(new []{ lmu.position, lhu.position });
         lines[10].SetPositions(new []{ rmu.position, rhu.position });
 
-        DrawCircle(h.position, Vector3.Distance(s, h.position));
+        var sp = h.position - s;
+        sp *= Mathf.Min(sp.magnitude, maxRadiusHead);
+        var headCenter = s + sp;
+        DrawCircle(headCenter, Vector3.Distance(s, sp));
         //lines[5].SetPositions(new []{ s, h.position });
     }
     
     void DrawCircle(Vector3 center, float radius)
     {
-        radius = Mathf.Min(radius, maxRadiusHead);
         headLine.positionCount = segments + 1; // +1 чтобы замкнуть круг
         headLine.useWorldSpace = true; // Рисуем в мировых координатах
 
