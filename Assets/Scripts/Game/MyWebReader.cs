@@ -49,11 +49,5 @@ namespace Game
             _isNeedData = false;
             DataTrigger?.Invoke(wallData);
         }
-
-        public void GameWasStarted() =>
-            SignalRegistration<ISignalInvoke>.Resolve()?.SendCommandToChangeState(1);
-
-        public void GameWasStopped() =>
-            SignalRegistration<ISignalInvoke>.Resolve()?.SendCommandToChangeState(2);
     }
 }

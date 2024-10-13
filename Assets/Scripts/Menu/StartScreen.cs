@@ -7,14 +7,12 @@ namespace Menu
     public class StartScreen : ScreenController
     {
         [SerializeField] private Button playButton;
-        [SerializeField] private Button exitButton;
 
         [SerializeField] private UpdateUserListener userListener;
-        [SerializeField] private GameController gameController;
+        [SerializeField] protected GameController gameController;
 
         private void OnEnable()
         {
-            exitButton.onClick.AddListener(CloseProgram);
             playButton.onClick.AddListener(OnPlay);
             userListener.OnUsersChanged.AddListener(UpdateUsers);
             UpdateUsers(userListener.UserCount);
@@ -22,29 +20,18 @@ namespace Menu
 
         private void OnDisable()
         {
-            exitButton.onClick.RemoveListener(CloseProgram);
             playButton.onClick.RemoveListener(OnPlay);
             userListener.OnUsersChanged.RemoveListener(UpdateUsers);
         }
 
-        private void UpdateUsers(int count)
+        protected virtual void OnPlay()
         {
-            playButton.interactable = count > 0;
-        }
-
-        private void OnPlay()
-        {
+            // TODO show tutorial tutorial
             gameController.StartGame();
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
 
-        private void CloseProgram()
-        {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-        }
+        private void UpdateUsers(int count) =>
+            playButton.interactable = count > 0;
     }
 }
