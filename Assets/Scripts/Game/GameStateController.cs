@@ -29,8 +29,9 @@ namespace Game
 
     public enum GameState : int
     {
-        MainMenu = 0,
+        None = 0,
         Game = 1,
         FinalScreen = 2,
+        MainMenu = 3,
     }
 }
