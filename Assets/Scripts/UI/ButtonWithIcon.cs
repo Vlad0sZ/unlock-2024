@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    [AddComponentMenu("UI/Round Button", 30)]
-    public class RoundButton : Button
+    [AddComponentMenu("UI/Button With Icon", 30)]
+    public class ButtonWithIcon : Button
     {
-        [SerializeField] private Image icon;
+        [SerializeField] private Graphic icon;
         [SerializeField] private ColorBlock iconColorBlock = ColorBlock.defaultColorBlock;
 
         protected override void DoStateTransition(SelectionState state, bool instant)

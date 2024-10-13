@@ -4,9 +4,9 @@ using UnityEditor.UI;
 
 namespace Editor.UI
 {
-    [CustomEditor(typeof(RoundButton), true)]
+    [CustomEditor(typeof(ButtonWithIcon), true)]
     [CanEditMultipleObjects]
-    public class RoundButtonEditor : ButtonEditor
+    public class ButtonWithIconEditor : ButtonEditor
     {
         private SerializedProperty iconProperty;
         private SerializedProperty iconColorProperty;
