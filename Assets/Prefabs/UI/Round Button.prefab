@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3842681270878037460}
   - component: {fileID: 7016809679702412415}
   - component: {fileID: 3874349265755906696}
+  - component: {fileID: 7175413590573173157}
   m_Layer: 5
   m_Name: Round Button
   m_TagString: Untagged
@@ -130,6 +131,18 @@ MonoBehaviour:
     m_DisabledColor: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 0.89411765}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
+--- !u!114 &7175413590573173157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976294479522716484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35bdaf95b12b1c346a309d5251a38993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3283288987597891721
 GameObject:
   m_ObjectHideFlags: 0
