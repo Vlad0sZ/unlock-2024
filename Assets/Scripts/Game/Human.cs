@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Human : MonoBehaviour
 {
+    [SerializeField] private float maxRadiusHead;
     [SerializeField] private PoseController poseController;
     [SerializeField] private List<LineRenderer> lines;
     [SerializeField] private LineRenderer headLine;
@@ -77,6 +78,7 @@ public class Human : MonoBehaviour
     
     void DrawCircle(Vector3 center, float radius)
     {
+        radius = Mathf.Min(radius, maxRadiusHead);
         headLine.positionCount = segments + 1; // +1 чтобы замкнуть круг
         headLine.useWorldSpace = true; // Рисуем в мировых координатах
 
