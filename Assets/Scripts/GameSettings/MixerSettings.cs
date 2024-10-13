@@ -60,7 +60,7 @@ namespace GameSettings
             SaveToSettings(value);
         }
 
-        private float ToMixerValue(float value)
+        private static float ToMixerValue(float value)
         {
             if (value == 0)
                 return -80;

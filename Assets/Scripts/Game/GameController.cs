@@ -59,14 +59,14 @@ namespace Game
 
         private void Update()
         {
-            if (_currentWall != null)
-            {
-                if (Input.GetKeyUp(KeyCode.Space))
-                {
-                    DestroyWall();
-                    myWebReader.NeedData();
-                }
-            }
+            if (_currentWall == null)
+                return;
+            
+            if (!Input.GetKeyUp(KeyCode.Space)) 
+                return;
+            
+            DestroyWall();
+            myWebReader.NeedData();
         }
 
         public void StartGame() => 
