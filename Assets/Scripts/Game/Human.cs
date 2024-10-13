@@ -75,7 +75,7 @@ public class Human : MonoBehaviour
         var sp = h.position - s;
         sp *= Mathf.Min(sp.magnitude, maxRadiusHead);
         var headCenter = s + sp;
-        DrawCircle(headCenter, Vector3.Distance(s, sp));
+        DrawCircle(headCenter, sp.magnitude);
         //lines[5].SetPositions(new []{ s, h.position });
     }
     
