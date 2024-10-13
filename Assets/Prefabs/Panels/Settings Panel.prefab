@@ -1519,7 +1519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3602550419417388056, guid: f4bc0bebe6557ca498b6e1c7a40371d0, type: 3}
       propertyPath: m_FillAmount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4180844107920135622, guid: f4bc0bebe6557ca498b6e1c7a40371d0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1531,15 +1531,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5140559752789756343, guid: f4bc0bebe6557ca498b6e1c7a40371d0, type: 3}
       propertyPath: m_MaxValue
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5140559752789756343, guid: f4bc0bebe6557ca498b6e1c7a40371d0, type: 3}
       propertyPath: m_MinValue
-      value: -80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5140559752789756343, guid: f4bc0bebe6557ca498b6e1c7a40371d0, type: 3}
       propertyPath: m_WholeNumbers
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5616740606688517830, guid: f4bc0bebe6557ca498b6e1c7a40371d0, type: 3}
       propertyPath: m_Pivot.x
@@ -1770,7 +1770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3602550419417388056, guid: f4bc0bebe6557ca498b6e1c7a40371d0, type: 3}
       propertyPath: m_FillAmount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4180844107920135622, guid: f4bc0bebe6557ca498b6e1c7a40371d0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1782,15 +1782,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5140559752789756343, guid: f4bc0bebe6557ca498b6e1c7a40371d0, type: 3}
       propertyPath: m_MaxValue
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5140559752789756343, guid: f4bc0bebe6557ca498b6e1c7a40371d0, type: 3}
       propertyPath: m_MinValue
-      value: -80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5140559752789756343, guid: f4bc0bebe6557ca498b6e1c7a40371d0, type: 3}
       propertyPath: m_WholeNumbers
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5616740606688517830, guid: f4bc0bebe6557ca498b6e1c7a40371d0, type: 3}
       propertyPath: m_Pivot.x

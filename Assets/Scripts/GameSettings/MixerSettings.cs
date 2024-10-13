@@ -38,7 +38,7 @@ namespace GameSettings
 
 
         private float RestoreFromSettings() =>
-            !string.IsNullOrEmpty(levelName) ? PlayerPrefs.GetFloat(GetPreferenceKey(), 0) : 0f;
+            !string.IsNullOrEmpty(levelName) ? PlayerPrefs.GetFloat(GetPreferenceKey(), 0.5f) : 0f;
 
         private void SaveToSettings(float value)
         {
@@ -49,7 +49,7 @@ namespace GameSettings
         private void UpdateMixerValue(float value)
         {
             if (!string.IsNullOrEmpty(levelName))
-                mixer.SetFloat(levelName, value);
+                mixer.SetFloat(levelName, ToMixerValue(value));
         }
 
         private string GetPreferenceKey() => $"audio_{levelName}";
@@ -58,6 +58,14 @@ namespace GameSettings
         {
             yield return new WaitForSecondsRealtime(1f);
             SaveToSettings(value);
+        }
+
+        private float ToMixerValue(float value)
+        {
+            if (value == 0)
+                return -80;
+
+            return Mathf.Log10(value) * 20;
         }
 
         [Button]

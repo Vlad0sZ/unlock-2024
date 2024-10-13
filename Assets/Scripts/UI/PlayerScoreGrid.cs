@@ -9,6 +9,7 @@ namespace UI
 {
     public class PlayerScoreGrid : MonoBehaviour
     {
+        private const int MaxPlayers = 8;
         [SerializeField] private LayoutGroup layoutParent;
         [SerializeField] private PlayerScoreElement elementPrefab;
 
@@ -20,18 +21,22 @@ namespace UI
             _parent = layoutParent.transform;
             _elements = new List<PlayerScoreElement>();
 
-            foreach (Transform child in _parent) 
+            foreach (Transform child in _parent)
                 Object.Destroy(child.gameObject);
         }
 
         public void UpdateGrid(IEnumerable<PlayerWithScore> scores)
         {
-            var orderScore = scores.OrderBy(x => x.Score);
+            var orderScore = scores.OrderByDescending(x => x.Score).Take(MaxPlayers);
+
             foreach (var withScore in orderScore)
             {
                 var element = CreateGridElement(withScore);
                 _elements.Add(element);
             }
+
+            if (_elements.Count > 1)
+                _elements.First().SetAsHighScore();
         }
 
 
