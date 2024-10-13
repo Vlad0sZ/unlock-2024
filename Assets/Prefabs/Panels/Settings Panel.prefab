@@ -677,6 +677,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropdown: {fileID: 3547164610804012804}
   noDeviceWarning: {fileID: 4693572597144195862}
+  onWebCamChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5028914098547923109
 GameObject:
   m_ObjectHideFlags: 0
@@ -1981,6 +1984,22 @@ PrefabInstance:
     - target: {fileID: 4508694282283841721, guid: ccdde4e05bf127545b53d340a348b565, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785933525023250532, guid: ccdde4e05bf127545b53d340a348b565, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785933525023250532, guid: ccdde4e05bf127545b53d340a348b565, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711412694097786191, guid: ccdde4e05bf127545b53d340a348b565, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711412694097786191, guid: ccdde4e05bf127545b53d340a348b565, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 8341200245815816040, guid: ccdde4e05bf127545b53d340a348b565, type: 3}
       propertyPath: m_Name

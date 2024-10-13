@@ -118,5 +118,13 @@ namespace MediaPipeUnity.Backend
         private void OnPoseLandmarkDetectionOutput(PoseLandmarkerResult result, Mediapipe.Image image,
             long timestamp) =>
             poseController.UpdatePose(result);
+
+
+        public void ChangeDevice(int sourceId)
+        {
+            Stop();
+            ImageSourceProvider.ImageSource.SelectSource(sourceId);
+            Play();
+        }
     }
 }

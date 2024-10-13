@@ -2,15 +2,23 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace GameSettings
 {
     public class WebCamSettings : MonoBehaviour
     {
+        [System.Serializable]
+        public class WebCamChangedEvent : UnityEvent<WebCamDevice>
+        {
+        }
+
         [SerializeField] private TMP_Dropdown dropdown;
         [SerializeField] private GameObject noDeviceWarning;
+        [SerializeField] private WebCamChangedEvent onWebCamChanged;
 
         private WebCamDevice[] _devices;
+        public WebCamChangedEvent OnWebCamChanged => onWebCamChanged;
 
         private void Start() =>
             SetupDropdown();
@@ -51,8 +59,8 @@ namespace GameSettings
 
         private void ChangeDevice(WebCamDevice device)
         {
-            // TODO change device in solution ???
             Debug.Log($"[WebCam Settings]: Device was changed to {device.name}");
+            onWebCamChanged?.Invoke(device);
         }
     }
 }
