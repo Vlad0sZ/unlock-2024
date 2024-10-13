@@ -24,7 +24,7 @@ namespace UI
                 Object.Destroy(child.gameObject);
         }
 
-        public void UpdateGrid(PlayerWithScore[] scores)
+        public void UpdateGrid(IEnumerable<PlayerWithScore> scores)
         {
             var orderScore = scores.OrderBy(x => x.Score);
             foreach (var withScore in orderScore)
