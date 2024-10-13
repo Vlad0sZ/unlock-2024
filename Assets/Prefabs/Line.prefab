@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3872350282947075014}
   - component: {fileID: 5214242243798859524}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,6 @@ LineRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 24bf22a437ebaeb4d943f96a2735ed53, type: 2}
-  - {fileID: 2100000, guid: dcd6ef30fb1d42744a41c92654453d80, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
