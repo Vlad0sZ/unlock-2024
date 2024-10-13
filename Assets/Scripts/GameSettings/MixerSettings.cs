@@ -38,7 +38,7 @@ namespace GameSettings
 
 
         private float RestoreFromSettings() =>
-            !string.IsNullOrEmpty(levelName) ? PlayerPrefs.GetFloat(GetPreferenceKey(), 0.5f) : 0f;
+            !string.IsNullOrEmpty(levelName) ? PlayerPrefs.GetFloat(GetPreferenceKey(), 0) : 0f;
 
         private void SaveToSettings(float value)
         {
