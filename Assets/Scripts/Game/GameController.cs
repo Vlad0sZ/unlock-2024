@@ -69,8 +69,13 @@ namespace Game
             myWebReader.NeedData();
         }
 
-        public void StartGame() => 
+        public void StartGame()
+        {
+            _isGameFinished = false;
+            _wallLogicFail = false;
+            
             StartCoroutine(StartGameStart());
+        }
 
         private IEnumerator StartGameStart()
         {
