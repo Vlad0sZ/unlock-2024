@@ -33,6 +33,12 @@ namespace Game
 
         private PlayerScore _playerScore;
 
+        private float _gameTime = 120;
+        public void SetTime(float time)
+        {
+            _gameTime = time;
+        }
+
         private void Awake()
         {
             _meshGenerator = new MeshGenerator(2, 2, 0.04f);
@@ -79,12 +85,12 @@ namespace Game
 
         private IEnumerator StartGameStart()
         {
-            sunMover.StartMove();
+            sunMover.StartMove(_gameTime);
             cloud.StartMove();
             GameStateController.CurrentState = GameState.Game;
         
             yield return new WaitForSeconds(1f);
-            timer.StartTimer();
+            timer.StartTimer(_gameTime);
             myWebReader.NeedData();
         }
 

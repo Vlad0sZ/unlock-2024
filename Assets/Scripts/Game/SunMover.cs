@@ -10,7 +10,7 @@ public class SunMover : MonoBehaviour
     [SerializeField] private SplineContainer splineContainer;
 
     // Время в секундах для полного прохождения сплайна
-    [SerializeField] private float duration; // 2 минуты
+    private float duration; // 2 минуты
 
     private float elapsedTime = 0f;
 
@@ -19,10 +19,11 @@ public class SunMover : MonoBehaviour
 
     private bool IsDone = true;
 
-    public void StartMove()
+    public void StartMove(float time)
     {
         IsDone = false;
         elapsedTime = 0;
+        duration = time;
     }
 
     // Update вызывается каждый кадр

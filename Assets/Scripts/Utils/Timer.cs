@@ -5,7 +5,7 @@ namespace Utils
 {
     public class Timer : MonoBehaviour
     {
-        [SerializeField] private int timeInSeconds;
+        private int timeInSeconds;
         [SerializeField] private bool isPause;
 
         private float _currentTime;
@@ -16,8 +16,9 @@ namespace Utils
         public event Action OnStart;
         public event Action OnStop;
 
-        public void StartTimer()
+        public void StartTimer(float time)
         {
+            timeInSeconds = (int) time;
             ResetTimer();
             IsStarted = true;
             
