@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace GameSettings
 {
     public class WebCamSettings : MonoBehaviour
     {
-        [System.Serializable]
+        [Serializable]
         public class WebCamChangedEvent : UnityEvent<WebCamDevice>
         {
         }
@@ -54,13 +55,26 @@ namespace GameSettings
                 .ToList();
 
             dropdown.AddOptions(options);
-            dropdown.SetValueWithoutNotify(0);
+            var cameraIndex = LoadLastCameraIndex();
+            dropdown.SetValueWithoutNotify(cameraIndex);
         }
 
         private void ChangeDevice(WebCamDevice device)
         {
             Debug.Log($"[WebCam Settings]: Device was changed to {device.name}");
+            WebCameraCache.SaveCamera(device);
             onWebCamChanged?.Invoke(device);
+        }
+
+
+        private int LoadLastCameraIndex()
+        {
+            WebCamDevice? loadDevice = WebCameraCache.LoadCamera();
+            if (loadDevice == null)
+                return 0;
+
+            int indexDevice = Array.IndexOf(_devices, loadDevice);
+            return indexDevice < 0 ? 0 : indexDevice;
         }
     }
 }
