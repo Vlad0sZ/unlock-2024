@@ -73,6 +73,7 @@ namespace Game
         {
             _isGameFinished = false;
             _wallLogicFail = false;
+            userText.ClearText();
             
             StartCoroutine(StartGameStart());
         }

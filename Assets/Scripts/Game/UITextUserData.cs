@@ -12,6 +12,8 @@ namespace Game
 
         public TMP_Text textElement;
 
+        public void ClearText() => textElement.text = string.Empty;
+        
         public void SetText(string userName, string itemName)
         {
             var randomString = GetRandom(formatString);
