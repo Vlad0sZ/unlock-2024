@@ -27,6 +27,8 @@ namespace UI
 
         public void UpdateGrid(IEnumerable<PlayerWithScore> scores)
         {
+            ClearGrid();
+            
             var orderScore = scores.OrderByDescending(x => x.Score).Take(MaxPlayers);
 
             foreach (var withScore in orderScore)
