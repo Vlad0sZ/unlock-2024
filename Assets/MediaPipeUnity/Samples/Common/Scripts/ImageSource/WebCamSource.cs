@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using GameSettings;
 using UnityEngine;
 
 #if UNITY_ANDROID
@@ -129,13 +130,14 @@ namespace Mediapipe.Unity
       }
 
       availableSources = WebCamTexture.devices;
+      if (availableSources == null || availableSources.Length == 0)
+        yield break;
 
-      if (availableSources != null && availableSources.Length > 0)
-      {
-        webCamDevice = availableSources[0];
-      }
+      var cachedDevice = WebCameraCache.LoadCamera();
+      webCamDevice = cachedDevice ?? availableSources[0];
     }
-
+    
+    
     private IEnumerator GetPermission()
     {
       lock (_PermissionLock)

@@ -122,7 +122,9 @@ namespace MediaPipeUnity.Backend
 
         public void ChangeDevice(int sourceId)
         {
-            Stop();
+            if (isPaused == false)
+                Stop();
+            
             ImageSourceProvider.ImageSource.SelectSource(sourceId);
             Play();
         }
