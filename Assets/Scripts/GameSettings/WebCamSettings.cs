@@ -17,7 +17,8 @@ namespace GameSettings
         [SerializeField] private TMP_Dropdown dropdown;
         [SerializeField] private GameObject noDeviceWarning;
         [SerializeField] private WebCamChangedEvent onWebCamChanged;
-
+        [SerializeField] private SettingsBadge hintSettings;
+        
         private WebCamDevice[] _devices;
         public WebCamChangedEvent OnWebCamChanged => onWebCamChanged;
 
@@ -46,7 +47,8 @@ namespace GameSettings
 
             bool noDevices = _devices.Length == 0;
             noDeviceWarning.SetActive(noDevices);
-
+            SetBadge();
+            
             if (noDevices)
                 return;
 
@@ -59,11 +61,20 @@ namespace GameSettings
             dropdown.SetValueWithoutNotify(cameraIndex);
         }
 
+        private void SetBadge()
+        {
+            bool noDevice = (_devices.Length == 0 || _devices.Length == 1 && _devices[0].name.Contains("OBS"));
+            hintSettings.ActivateBadge(noDevice);
+        }
+
         private void ChangeDevice(WebCamDevice device)
         {
             Debug.Log($"[WebCam Settings]: Device was changed to {device.name}");
             WebCameraCache.SaveCamera(device);
             onWebCamChanged?.Invoke(device);
+            
+            if(!device.name.Contains("OBS"))
+                hintSettings.ActivateBadge(false);
         }
 
 
